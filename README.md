@@ -8,7 +8,7 @@
   VendureEats - Multi-Vendor Food Delivery App
 </h1>
 <p align="center">
-  A food delivery platform built with <a href="https://vendure.io">Vendure v3</a> and <a href="https://medusa.io">Next.js 14</a>.
+  A food delivery platform built with <a href="https://vendure.io">Vendure v3</a> and <a href="https://vendure.io">Next.js 14</a>.
 </p>
 
 <p align="center">
