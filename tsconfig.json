@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "http://localhost:3500/shop-api",
+        "tadaOutputLocation": "./storefront/src/graphql-env.d.ts"
+      }
+    ]
+  }
+}

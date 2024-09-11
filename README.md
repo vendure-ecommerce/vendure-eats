@@ -1,96 +1,105 @@
-# VendureEats
+<p align="center">
+  <a href="https://vendure.io">
+    <img alt="Medusa logo" height="60" width="auto" src="https://a.storyblok.com/f/192301/252x200/c6608214a9/brand-icon-primary.svg">
+  </a>
+</p>
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+<h1 align="center">
+  Vendure Eats - Food Delivery Platform
+</h1>
+<p align="center">
+  A food delivery platform built with <a href="https://vendure.io">Vendure v3</a> and <a href="https://medusa.io">Next.js 14</a>.
+</p>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+<p align="center">
+    <img src=" https://img.shields.io/badge/Status-Work_in_progress-blue" alt="Status: Work in Progress" />
+  <a href="https://vendure.io/community">
+    <img src="https://img.shields.io/badge/join-our%20discord-7289DA.svg" alt="Join our Discord" />
+  </a>
+  <a href="https://twitter.com/intent/follow?screen_name=vendure_io">
+    <img src="https://img.shields.io/twitter/follow/vendure_io" alt="Follow @vendure_io" />
+  </a>
+</p>
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+> 🚧 **Work in Progress** 🚧
+> This project is currently still under development and is part of a series of live streams on the Vendure YouTube channel and Twitch.
+> This means that the project is not yet feature-complete and is being developed live on stream.
+> If you want to follow along, make sure to subscribe to the [Vendure YouTube channel](https://www.youtube.com/@vendure_io/streams) and follow us on [Twitch](https://www.twitch.tv/vendure_io).
 
-## Run tasks
+## Overview
 
-To run tasks with Nx use:
+Vendure Eats is an open-source project that is used to demonstrate the capabilities and features of Vendure. It is built in a series of live streams of the Vendure founders [David](https://x.com/dlhck_) and [Michael](https://x.com/michlbrmly) on the [Vendure YouTube channel](https://www.youtube.com/@vendure_io/streams) and on [Twitch](https://www.twitch.tv/vendure_io).
 
-```sh
-npx nx <target> <project-name>
+The stack of Vendure Eats: 
+
+- [Vendure](https://vendure.io)
+- [Nx](https://nx.dev)
+- [Next.js](https://nextjs.org) 
+- [Tailwind CSS](https://tailwindcss.com)
+- [Shadcn](https://shadcn.com) 
+- [TypeScript](https://www.typescriptlang.org) 
+
+## Features 
+
+This project is currently still under development and the features are being added as we go. The following features are planned for the project:
+
+- [x] Monorepo Setup
+- [ ] ♻️ Restaurant listing and map view
+- [ ] ♻️ Restaurant detail page
+- [ ] Customer registration and login (incl. social login/signup)
+- [ ] Menu listing
+- [ ] Cart functionality
+- [ ] ♻️ Checkout process
+- [ ] Order history and order status page 
+- [ ] Admin dashboard for restaurants 
+- [ ] Admin dashboard for drivers (delivering the orders)
+
+## Quickstart 
+
+We are using [Nx](https://nx.dev) to manage the monorepo. To get started, clone the repository and run the following commands:
+
+Install dependencies first: 
+```bash
+npm install
 ```
 
-For example:
-
-```sh
-npx nx build myproject
+Start docker containers:
+```bash
+docker-compose up -d
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+In case your env variable `ADMIN_UI_DEV_MODE` is set to `true`, you need to build the admin ui first:
+```bash
+npx nx build-admin vendure 
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+Start the Vendure server and worker: 
 
-```sh
-# Genenerate an app
-npx nx g @nx/react:app demo
-
-# Generate a library
-npx nx g @nx/react:lib some-lib
+```bash
+npx nx serve vendure 
+npx nx serve-worker vendure 
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+To start the storefront, run: 
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
+```bash
+npx nx dev storefront 
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+Following these steps, you should be able to access 
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- the Vendure Admin UI at `http://localhost:3000/admin`
+- the Vendure Admin API playground at `http://localhost:3000/admin-api`
+- the Vendure Shop API playground at `http://localhost:3000/shop-api`
+- the storefront at `http://localhost:4200`.
 
-### Step 2
+## Resources 
 
-Use the following command to configure a CI workflow for your workspace:
+### Get started with Vendure 
+- [Vendure Documentation](https://docs.vendure.io)
+- [Vendure GitHub Repository](https://github.com/vendure-ecommerce/vendure)
+- [Vendure Discord Community](https://vendure.io/community)
 
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Get started with Next.js
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Next.js GitHub Repository](https://github.com/vercel/next.js)

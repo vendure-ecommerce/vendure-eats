@@ -1,0 +1,15 @@
+services:
+  vendure-db:
+    image: postgres:15
+    container_name: vendure-db
+    volumes:
+      - vendure_eats_postgres_data:/var/lib/postgresql/data
+    ports:
+      - 6543:5432
+    environment:
+      POSTGRES_USER: vendure
+      POSTGRES_PASSWORD: vendure
+      POSTGRES_DB: vendure
+
+volumes:
+  vendure_eats_postgres_data:
