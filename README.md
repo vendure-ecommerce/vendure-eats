@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">
-  Vendure Eats - Food Delivery Platform
+  VendureEats - Multi-Vendor Food Delivery App
 </h1>
 <p align="center">
   A food delivery platform built with <a href="https://vendure.io">Vendure v3</a> and <a href="https://medusa.io">Next.js 14</a>.
