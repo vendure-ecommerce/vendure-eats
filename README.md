@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://vendure.io">
-    <img alt="Medusa logo" height="60" width="auto" src="https://a.storyblok.com/f/192301/252x200/c6608214a9/brand-icon-primary.svg">
+    <img alt="Vendure logo" height="60" width="auto" src="https://a.storyblok.com/f/192301/252x200/c6608214a9/brand-icon-primary.svg">
   </a>
 </p>
 
