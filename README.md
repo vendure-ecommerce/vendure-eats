@@ -36,7 +36,7 @@ The stack of Vendure Eats:
 - [Nx](https://nx.dev)
 - [Next.js](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
-- [Shadcn](https://shadcn.com)
+- [Shadcn UI](https://ui.shadcn.com/)
 - [TypeScript](https://www.typescriptlang.org)
 
 ## Features
