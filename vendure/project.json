@@ -7,44 +7,34 @@
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/vendure",
         "main": "vendure/src/main-server.ts",
         "tsConfig": "vendure/tsconfig.app.json",
         "webpackConfig": "vendure/webpack.config.js",
-        "assets": [
-        ],
+        "assets": [],
         "compiler": "tsc",
         "target": "node"
       },
       "configurations": {
         "development": {},
-        "production": {
-        }
+        "production": {}
       }
     },
     "build-worker": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/vendure",
-        "format": [
-          "cjs"
-        ],
+        "format": ["cjs"],
         "bundle": false,
         "main": "vendure/src/main-worker.ts",
         "tsConfig": "vendure/tsconfig.app.json",
-        "assets": [
-          "vendure/src/assets"
-        ],
+        "assets": ["vendure/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -76,9 +66,7 @@
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "buildTarget": "vendure:build",
         "runBuildTargetDependencies": false
@@ -95,9 +83,7 @@
     "serve-worker": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "build-worker"
-      ],
+      "dependsOn": ["build-worker"],
       "options": {
         "buildTarget": "vendure:build-worker",
         "runBuildTargetDependencies": false

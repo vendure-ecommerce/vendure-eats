@@ -1,6 +1,6 @@
-import {compileUiExtensions} from '@vendure/ui-devkit/compiler';
+import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 import path from 'path';
-import {uiExtensionsConfig} from "./vendure-config";
+import { uiExtensionsConfig } from './vendure-config';
 
 compileUiExtensions({
   outputPath: path.join(__dirname, '../../dist/admin-ui'),

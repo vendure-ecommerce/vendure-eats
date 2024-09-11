@@ -1,20 +1,18 @@
-import {OrderProcess} from "@vendure/core";
+import { OrderProcess } from '@vendure/core';
 
 export const eatsOrderProcess: OrderProcess<
-  'DriverAssigned' | 'AcceptedByRestaurant' |
-  'RejectedByRestaurant' | 'InPreparation' | 'Done'
->
-  = {
+  'DriverAssigned' | 'AcceptedByRestaurant' | 'RejectedByRestaurant' | 'InPreparation' | 'Done'
+> = {
   transitions: {
     PaymentSettled: {
       to: ['DriverAssigned'],
-      mergeStrategy: 'replace'
+      mergeStrategy: 'replace',
     },
     DriverAssigned: {
       to: ['AcceptedByRestaurant', 'RejectedByRestaurant'],
     },
     RejectedByRestaurant: {
-      to: ['Done']
+      to: ['Done'],
     },
     AcceptedByRestaurant: {
       to: ['InPreparation'],
@@ -25,5 +23,5 @@ export const eatsOrderProcess: OrderProcess<
     Done: {
       to: ['Shipped'],
     },
-  }
-}
+  },
+};

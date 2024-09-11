@@ -1,14 +1,13 @@
-import {Args, Query, Resolver} from '@nestjs/graphql';
-import {ID} from '@vendure/common/lib/shared-types';
-import {Ctx, RequestContext} from '@vendure/core';
-import {RestaurantService} from '../services/restaurant.service';
-import {RestaurantListingOptions} from "../types";
-import {Inject} from "@nestjs/common";
+import { Inject } from '@nestjs/common';
+import { Args, Query, Resolver } from '@nestjs/graphql';
+import { ID } from '@vendure/common/lib/shared-types';
+import { Ctx, RequestContext } from '@vendure/core';
+import { RestaurantService } from '../services/restaurant.service';
+import { RestaurantListingOptions } from '../types';
 
 @Resolver()
 export class RestaurantResolver {
-  constructor(@Inject('RestaurantService') private restaurantService: RestaurantService) {
-  }
+  constructor(@Inject('RestaurantService') private restaurantService: RestaurantService) {}
 
   @Query()
   async findAllRestaurants(@Ctx() ctx: RequestContext, @Args() options: RestaurantListingOptions) {

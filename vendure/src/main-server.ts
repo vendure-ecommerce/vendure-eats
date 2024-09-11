@@ -1,12 +1,7 @@
-import {config, uiExtensionsConfig} from './vendure-config';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
-import {
-  bootstrap,
-  JobQueueService,
-  mergeConfig,
-  runMigrations,
-} from '@vendure/core';
+import { JobQueueService, bootstrap, mergeConfig, runMigrations } from '@vendure/core';
 import * as path from 'path';
+import { config, uiExtensionsConfig } from './vendure-config';
 
 const ADMIN_UI_DEV_MODE = process.env.ADMIN_UI_DEV_MODE == 'true';
 
@@ -18,14 +13,14 @@ const mergedConfig = mergeConfig(config, {
       route: 'admin',
       app: ADMIN_UI_DEV_MODE
         ? require('@vendure/ui-devkit/compiler').compileUiExtensions({
-          outputPath: path.join(__dirname, '../__temp-admin-ui'),
-          extensions: uiExtensionsConfig,
-          devMode: true,
-          command: 'npm',
-        })
+            outputPath: path.join(__dirname, '../__temp-admin-ui'),
+            extensions: uiExtensionsConfig,
+            devMode: true,
+            command: 'npm',
+          })
         : {
-          path: path.join(process.cwd(), 'dist/admin-ui/dist'),
-        },
+            path: path.join(process.cwd(), 'dist/admin-ui/dist'),
+          },
     }),
   ],
 });

@@ -1,5 +1,5 @@
-import {bootstrapWorker} from '@vendure/core';
-import {config} from "./vendure-config";
+import { bootstrapWorker } from '@vendure/core';
+import { config } from './vendure-config';
 
 // tslint:disable-next-line:no-console
 bootstrapWorker(config)

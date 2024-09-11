@@ -1,11 +1,10 @@
-import {Injectable} from '@nestjs/common';
-import {Channel, EntityNotFoundError, ID, RequestContext, Seller, TransactionalConnection} from '@vendure/core';
-import {RestaurantListingOptions} from '../types';
+import { Injectable } from '@nestjs/common';
+import { ID, RequestContext, Seller, TransactionalConnection } from '@vendure/core';
+import { RestaurantListingOptions } from '../types';
 
 @Injectable()
 export class RestaurantService {
-  constructor(private connection: TransactionalConnection) {
-  }
+  constructor(private connection: TransactionalConnection) {}
 
   /**
    * Find all Sellers (Restaurants)
@@ -13,21 +12,20 @@ export class RestaurantService {
    * @param options
    */
   async findAll(ctx: RequestContext, options: RestaurantListingOptions) {
-    const [result, total] = await this.connection.getRepository(ctx, Seller)
-      .findAndCount({
-        where: {
-          customFields: {
-            isOpen: options.onlyOpen ?? false,
-          },
+    const [result, total] = await this.connection.getRepository(ctx, Seller).findAndCount({
+      where: {
+        customFields: {
+          isOpen: options.onlyOpen ?? false,
         },
-        take: options.take ?? 25,
-        skip: options.skip ?? 0,
-      })
+      },
+      take: options.take ?? 25,
+      skip: options.skip ?? 0,
+    });
 
     return {
       items: result,
       totalItems: total,
-    }
+    };
   }
 
   /**
@@ -38,19 +36,19 @@ export class RestaurantService {
   async findById(ctx: RequestContext, id: ID) {
     const seller = await this.connection.getEntityOrThrow(ctx, Seller, id, {
       relations: {
-        channels: true
-      }
-    })
+        channels: true,
+      },
+    });
 
-    const channel = seller.channels.at(0)
+    const channel = seller.channels.at(0);
 
     if (!channel) {
-      throw new Error(`Channel for Seller with ID ${id} not found`)
+      throw new Error(`Channel for Seller with ID ${id} not found`);
     }
 
     return {
       seller,
-      channelToken: channel.token
-    }
+      channelToken: channel.token,
+    };
   }
 }

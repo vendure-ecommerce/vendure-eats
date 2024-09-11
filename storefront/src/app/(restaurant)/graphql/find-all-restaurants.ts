@@ -1,6 +1,6 @@
-import {graphql} from "@/graphql";
-import {client} from "@/actions/api";
-import {VariablesOf} from "gql.tada";
+import { client } from '@/actions/api';
+import { graphql } from '@/graphql';
+import { VariablesOf } from 'gql.tada';
 
 export const RestaurantListFragment = graphql(`
   fragment RestaurantListFragment on Seller {
@@ -14,19 +14,22 @@ export const RestaurantListFragment = graphql(`
       }
     }
   }
-`)
+`);
 
-
-const queryDoc = graphql(`
-  query FindAllRestaurants($options: RestaurantListingOptions) {
-    findAllRestaurants(options: $options){
-      items {
-        ...RestaurantListFragment
+const queryDoc = graphql(
+  `
+    query FindAllRestaurants($options: RestaurantListingOptions) {
+      findAllRestaurants(options: $options) {
+        items {
+          ...RestaurantListFragment
+        }
+        totalItems
       }
     }
-  }
-`, [RestaurantListFragment])
+  `,
+  [RestaurantListFragment],
+);
 
 export function findAllRestaurants(variables: VariablesOf<typeof queryDoc>) {
-  return client.request(queryDoc, variables)
+  return client.request(queryDoc, variables);
 }

@@ -1,7 +1,6 @@
+import Providers from '@/app/providers';
+import { Inter } from 'next/font/google';
 import './global.css';
-import {Inter} from 'next/font/google'
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import Providers from "@/app/providers";
 
 export const metadata = {
   title: 'Welcome to storefront',
@@ -11,18 +10,13 @@ export const metadata = {
 const fontSans = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
-})
+});
 
-export default function RootLayout({
-                                     children,
-                                   }: {
-  children: React.ReactNode;
-}) {
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <Providers>
       <html lang="en" className={fontSans.variable}>
-      <body>{children}</body>
+        <body>{children}</body>
       </html>
     </Providers>
   );

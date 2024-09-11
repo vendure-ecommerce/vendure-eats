@@ -1,35 +1,36 @@
-import {PluginCommonModule, Type, VendurePlugin} from '@vendure/core';
+import { PluginCommonModule, Type, VendurePlugin } from '@vendure/core';
 
-import {EATS_CORE_PLUGIN_OPTIONS} from './constants';
-import {PluginInitOptions} from './types';
-import {shopApiExtension} from './api/api-extensions';
-import {RestaurantService} from './services/restaurant.service';
-import {RestaurantResolver} from './api/restaurant.resolver';
+import { shopApiExtension } from './api/api-extensions';
+import { RestaurantResolver } from './api/restaurant.resolver';
+import { EATS_CORE_PLUGIN_OPTIONS } from './constants';
+import { RestaurantService } from './services/restaurant.service';
+import { PluginInitOptions } from './types';
 
 @VendurePlugin({
   imports: [PluginCommonModule],
-  providers: [{
-    provide: EATS_CORE_PLUGIN_OPTIONS,
-    useFactory: () => EatsCorePlugin.options
-  },
+  providers: [
+    {
+      provide: EATS_CORE_PLUGIN_OPTIONS,
+      useFactory: () => EatsCorePlugin.options,
+    },
     RestaurantService,
     {
       provide: 'Test',
-      useValue: 'test'
+      useValue: 'test',
     },
     {
       provide: 'RestaurantService',
-      useClass: RestaurantService
-    }
+      useClass: RestaurantService,
+    },
   ],
-  configuration: config => {
+  configuration: (config) => {
     return config;
   },
   compatibility: '^3.0.0',
   entities: [],
   shopApiExtensions: {
     schema: shopApiExtension,
-    resolvers: [RestaurantResolver]
+    resolvers: [RestaurantResolver],
   },
 })
 export class EatsCorePlugin {

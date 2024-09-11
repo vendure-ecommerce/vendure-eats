@@ -1,6 +1,6 @@
-import {graphql} from "@/graphql";
-import {client} from "@/actions/api";
-import {VariablesOf} from "gql.tada";
+import { client } from '@/actions/api';
+import { graphql } from '@/graphql';
+import { VariablesOf } from 'gql.tada';
 
 export const RestaurantDetailFragment = graphql(`
   fragment RestaurantDetailFragment on Seller {
@@ -14,19 +14,22 @@ export const RestaurantDetailFragment = graphql(`
       }
     }
   }
-`)
+`);
 
-const queryDoc = graphql(`
-  query FindRestaurantById($id: ID!) {
-    restaurantById(id: $id){
-      seller {
-         ...RestaurantDetailFragment
+const queryDoc = graphql(
+  `
+    query FindRestaurantById($id: ID!) {
+      restaurantById(id: $id) {
+        seller {
+          ...RestaurantDetailFragment
+        }
+        channelToken
       }
-      channelToken
     }
-  }
-`, [RestaurantDetailFragment])
+  `,
+  [RestaurantDetailFragment],
+);
 
 export function getRestaurantById(variables: VariablesOf<typeof queryDoc>) {
-  return client.request(queryDoc, variables)
+  return client.request(queryDoc, variables);
 }
