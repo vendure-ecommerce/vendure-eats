@@ -1,0 +1,115 @@
+{
+  "name": "vendure",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "vendure/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/vendure",
+        "main": "vendure/src/main-server.ts",
+        "tsConfig": "vendure/tsconfig.app.json",
+        "webpackConfig": "vendure/webpack.config.js",
+        "assets": [
+        ],
+        "compiler": "tsc",
+        "target": "node"
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+        }
+      }
+    },
+    "build-worker": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/vendure",
+        "format": [
+          "cjs"
+        ],
+        "bundle": false,
+        "main": "vendure/src/main-worker.ts",
+        "tsConfig": "vendure/tsconfig.app.json",
+        "assets": [
+          "vendure/src/assets"
+        ],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "build-admin": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx ts-node -r tsconfig-paths/register --project vendure/tsconfig.admin.json vendure/src/main-admin.ts"
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "buildTarget": "vendure:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "vendure:build:development"
+        },
+        "production": {
+          "buildTarget": "vendure:build:production"
+        }
+      }
+    },
+    "serve-worker": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": [
+        "build-worker"
+      ],
+      "options": {
+        "buildTarget": "vendure:build-worker",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "vendure:build-worker:development"
+        },
+        "production": {
+          "buildTarget": "vendure:build-worker:production"
+        }
+      }
+    }
+  }
+}
