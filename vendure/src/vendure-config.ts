@@ -1,11 +1,17 @@
-import {Asset, defaultOrderProcess, DefaultSearchPlugin, dummyPaymentHandler, User, VendureConfig} from "@vendure/core";
-import {EatsCorePlugin} from './plugins/eats-core/eats-core.plugin';
-import {eatsOrderProcess} from "./plugins/eats-core/config/eats-order-process";
+import {
+  Asset,
+  defaultOrderProcess,
+  DefaultSearchPlugin,
+  dummyPaymentHandler,
+  User,
+  VendureConfig,
+} from '@vendure/core';
+import { eatsOrderProcess } from './plugins/eats-core/config/eats-order-process';
+import { EatsCorePlugin } from './plugins/eats-core/eats-core.plugin';
 
-export const uiExtensionsConfig = []
+export const uiExtensionsConfig = [];
 
 const PORT = +(process.env.PORT as string);
-
 const IS_DEV = process.env.NODE_ENV === 'development';
 
 export const config: VendureConfig = {
@@ -14,10 +20,10 @@ export const config: VendureConfig = {
     adminApiPath: 'admin-api',
     shopApiPath: 'shop-api',
     adminApiPlayground: IS_DEV,
-    shopApiPlayground: IS_DEV
+    shopApiPlayground: IS_DEV,
   },
   orderOptions: {
-    process: [defaultOrderProcess, eatsOrderProcess]
+    process: [defaultOrderProcess, eatsOrderProcess],
   },
   authOptions: {
     requireVerification: true,
@@ -45,15 +51,15 @@ export const config: VendureConfig = {
       {
         name: 'isOpen',
         type: 'boolean',
-        defaultValue: false
+        defaultValue: false,
       },
       {
         name: 'address',
-        type: 'string'
+        type: 'string',
       },
       {
         name: 'phoneNumber',
-        type: 'string'
+        type: 'string',
       },
       {
         name: 'logo',
@@ -64,14 +70,11 @@ export const config: VendureConfig = {
         name: 'user',
         type: 'relation',
         entity: User,
-      }
+      },
     ],
   },
   paymentOptions: {
     paymentMethodHandlers: [dummyPaymentHandler],
   },
-  plugins: [
-    DefaultSearchPlugin.init({}),
-    EatsCorePlugin.init({})
-  ]
-}
+  plugins: [DefaultSearchPlugin.init({}), EatsCorePlugin.init({})],
+};

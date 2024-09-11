@@ -1,4 +1,4 @@
 schema:
-  - http://localhost:3500/shop-api
-  - http://localhost:3500/admin-api
+  - http://localhost:3000/shop-api
+  - http://localhost:3000/admin-api
 documents: '**/*.graphql'
