@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "workspaces": ["./"],
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.9",
     "@nx/esbuild": "19.7.2",

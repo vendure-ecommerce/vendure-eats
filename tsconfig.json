@@ -4,7 +4,7 @@
     "plugins": [
       {
         "name": "gql.tada/ts-plugin",
-        "schema": "http://localhost:3500/shop-api",
+        "schema": "http://localhost:3000/shop-api",
         "tadaOutputLocation": "./storefront/src/graphql-env.d.ts"
       }
     ]

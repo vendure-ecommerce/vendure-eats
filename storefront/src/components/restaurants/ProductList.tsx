@@ -4,6 +4,7 @@ import {
   findProductsOfRestaurant,
   ProductFragment,
 } from '@/app/(restaurant)/graphql/products-of-restaurant';
+import { ProductListItem } from '@/components/restaurants/ProductListItem';
 import { useQuery } from '@tanstack/react-query';
 import { readFragment } from 'gql.tada';
 
@@ -18,26 +19,11 @@ export function ProductList({ channelToken }: ProductListProps) {
   });
 
   return (
-    <div>
+    <div className="rounded border border-gray-100 bg-white shadow-md">
       {data?.products.items.map((item) => {
         const data = readFragment(ProductFragment, item);
 
-        return (
-          <div key={data.id}>
-            <span className="text-2xl">{data.name}</span>
-            <ul className={'text-gray-600'}>
-              {data.variants.map((variant) => {
-                const price = (variant.priceWithTax / 100).toFixed(2);
-
-                return (
-                  <li key={variant.id}>
-                    {variant.name} ({variant.sku}): {price}€
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
+        return <ProductListItem product={data} key={data.id}></ProductListItem>;
       })}
     </div>
   );
