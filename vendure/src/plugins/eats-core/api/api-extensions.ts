@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const shopApiExtension = gql`
+const restaurantExtension = gql`
   type RestaurantListing {
     items: [Seller!]!
     totalItems: Int!
@@ -16,7 +16,10 @@ export const shopApiExtension = gql`
     seller: Seller!
     channelToken: String!
   }
+`;
 
+export const shopApiExtension = gql`
+  ${restaurantExtension}
   extend type Query {
     findAllRestaurants(options: RestaurantListingOptions): RestaurantListing!
     restaurantById(id: ID!): SellerResponse

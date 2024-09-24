@@ -19,6 +19,19 @@ module.exports = {
     },
     extend: {
       colors: {
+        'picton-blue': {
+          50: '#effaff',
+          100: '#dff3ff',
+          200: '#b8eaff',
+          300: '#78daff',
+          400: '#17c1ff',
+          500: '#06b1f1',
+          600: '#008ece',
+          700: '#0072a7',
+          800: '#025f8a',
+          900: '#084f72',
+          950: '#06324b',
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

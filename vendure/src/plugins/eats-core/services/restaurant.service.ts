@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ID, RequestContext, Seller, TransactionalConnection } from '@vendure/core';
+import { Not } from 'typeorm';
 import { RestaurantListingOptions } from '../types';
 
 @Injectable()
@@ -14,8 +15,9 @@ export class RestaurantService {
   async findAll(ctx: RequestContext, options: RestaurantListingOptions) {
     const [result, total] = await this.connection.getRepository(ctx, Seller).findAndCount({
       where: {
+        name: Not('__default__'),
         customFields: {
-          isOpen: options.onlyOpen ?? false,
+          isOpen: options.onlyOpen ?? null,
         },
       },
       take: options.take ?? 25,

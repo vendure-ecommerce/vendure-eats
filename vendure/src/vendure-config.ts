@@ -1,8 +1,10 @@
 import {
   Asset,
+  Collection,
   defaultOrderProcess,
   DefaultSearchPlugin,
   dummyPaymentHandler,
+  LanguageCode,
   User,
   VendureConfig,
 } from '@vendure/core';
@@ -52,24 +54,59 @@ export const config: VendureConfig = {
         name: 'isOpen',
         type: 'boolean',
         defaultValue: false,
+        label: [{ languageCode: LanguageCode.en, value: 'Is Open' }],
       },
       {
         name: 'address',
         type: 'string',
+        label: [{ languageCode: LanguageCode.en, value: 'Address' }],
+        ui: {
+          tab: 'Location',
+        },
       },
       {
         name: 'phoneNumber',
         type: 'string',
+        label: [{ languageCode: LanguageCode.en, value: 'Phone Number' }],
       },
       {
         name: 'logo',
         type: 'relation',
         entity: Asset,
+        label: [{ languageCode: LanguageCode.en, value: 'Logo' }],
       },
       {
         name: 'user',
         type: 'relation',
         entity: User,
+        label: [{ languageCode: LanguageCode.en, value: 'User' }],
+      },
+      {
+        name: 'averageShippingTime',
+        type: 'string',
+        label: [{ languageCode: LanguageCode.en, value: 'Average Shipping Time' }],
+      },
+      {
+        name: 'category',
+        type: 'relation',
+        entity: Collection,
+        label: [{ languageCode: LanguageCode.en, value: 'Category' }],
+      },
+      {
+        name: 'locationLat',
+        type: 'string',
+        label: [{ languageCode: LanguageCode.en, value: 'Location Latitude' }],
+        ui: {
+          tab: 'Location',
+        },
+      },
+      {
+        name: 'locationLng',
+        type: 'string',
+        label: [{ languageCode: LanguageCode.en, value: 'Location Longitude' }],
+        ui: {
+          tab: 'Location',
+        },
       },
     ],
   },

@@ -1,4 +1,5 @@
 import Providers from '@/app/providers';
+import { Navbar } from '@/components/layout/Navbar';
 import { Inter } from 'next/font/google';
 import './global.css';
 
@@ -16,7 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <Providers>
       <html lang="en" className={fontSans.variable}>
-        <body>{children}</body>
+        <body>
+          <Navbar></Navbar>
+          {children}
+        </body>
       </html>
     </Providers>
   );

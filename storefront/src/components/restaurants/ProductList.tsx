@@ -1,6 +1,9 @@
 'use client';
 
-import { findProductsOfRestaurant, ProductFragment } from '@/app/(restaurant)/graphql/products-of-restaurant';
+import {
+  findProductsOfRestaurant,
+  ProductFragment,
+} from '@/app/(restaurant)/graphql/products-of-restaurant';
 import { useQuery } from '@tanstack/react-query';
 import { readFragment } from 'gql.tada';
 
