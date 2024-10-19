@@ -1,7 +1,7 @@
 {
   "name": "vendure",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "vendure/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/vendure/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -10,16 +10,18 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/vendure",
-        "main": "vendure/src/main-server.ts",
-        "tsConfig": "vendure/tsconfig.app.json",
-        "webpackConfig": "vendure/webpack.config.js",
+        "outputPath": "dist/apps/vendure",
+        "main": "apps/vendure/src/main-server.ts",
+        "tsConfig": "apps/vendure/tsconfig.app.json",
+        "webpackConfig": "apps/vendure/webpack.config.js",
         "assets": [],
         "compiler": "tsc",
         "target": "node"
       },
       "configurations": {
-        "development": {},
+        "development": {
+
+        },
         "production": {}
       }
     },
@@ -32,9 +34,9 @@
         "outputPath": "dist/vendure",
         "format": ["cjs"],
         "bundle": false,
-        "main": "vendure/src/main-worker.ts",
-        "tsConfig": "vendure/tsconfig.app.json",
-        "assets": ["vendure/src/assets"],
+        "main": "apps/vendure/src/main-worker.ts",
+        "tsConfig": "apps/vendure/tsconfig.app.json",
+        "assets": ["apps/vendure/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -59,7 +61,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx ts-node -r tsconfig-paths/register --project vendure/tsconfig.admin.json vendure/src/main-admin.ts"
+          "npx ts-node -r tsconfig-paths/register --project apps/vendure/tsconfig.admin.json apps/vendure/src/main-admin.ts"
         ]
       }
     },
@@ -68,7 +70,6 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "vendure:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
